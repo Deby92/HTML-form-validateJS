@@ -5,26 +5,50 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-/* window.onload = function() { */
-//write your code here
-let form = document.querySelector('form');
+const formulario = document.getElementById("formulario");
+const inputs = document.querySelectorAll("#formulario input");
 
-form.addEventListener('submit', (evento) => {
-    evento.preventDefault();
-    
-    let errors = [];
+const fields = {
+  Card: false,
+  Cvc: false,
+  Ammount: false,
+  FirstName: false,
+  LastName: false,
+  City: false,
+  State: false,
+  PostalCode: false,
+  WeAccept: false,
+  Message: false
+};
+inputs.forEach(input => {
+  input.addEventListener("keyup", validateFormulario);
+  input.addEventListener("blur", validateFormulario);
+});
 
-    let card = document.querySelector('#card');
-    let cvc = document.querySelector('#cvc');
-    let ammount = document.querySelector('#ammount');
-    let firstName = document.querySelector('#firstName');
-    let lastName = document.querySelector('#lastName');
-    let city = document.querySelector('#city');
-    let state = document.querySelector('#state');
-    let postalCode = document.querySelector('#postalCode');
-    let weAccept = document.querySelector('#weAccept');
-    let message = document.querySelector('#message');
-    let cancel = document.querySelector('#cancel');
-    let submit = document.querySelector('#submit');
+formulario.addEventListener("submit", e => {
+  e.preventDefault();
 
-    let empty = /^$/;
+  const weAccept = getElementById("weAccept");
+  if (
+    fields.card &&
+    fields.cvc &&
+    fields.ammount &&
+    fields.firstName &&
+    fields.lastName &&
+    fields.city &&
+    fields.state &&
+    fields.postalCode &&
+    fields.message &&
+    weAccept.checked
+  );
+  {
+    formulario.reset();
+
+    document
+      .getElementById("alert.alert-danger.m-3")
+      .classList.add("alert.alert-danger.m-3-activo");
+  }
+    else {
+        document.getElementById('alert.alert-danger.m-3').classListAdd('alert.alert-danger.m-3-activo');
+    }
+});
